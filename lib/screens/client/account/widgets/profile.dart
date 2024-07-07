@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:job_findder_app/constants/global_variables.dart';
+import 'package:job_findder_app/constants/appColors.dart';
 
 class ProfileWidget extends StatelessWidget {
   final String name;
@@ -27,7 +27,7 @@ class ProfileWidget extends StatelessWidget {
                   height: 8,
                 ),
                 CircleAvatar(
-                  backgroundColor: GlobalVariables.secondaryColor,
+                  backgroundColor: AppColors.secondaryColor,
                   foregroundColor: Colors.white,
                   radius: 35,
                   child: Icon(
@@ -68,7 +68,7 @@ class ProfileWidget extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 20),
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: GlobalVariables.secondaryColor,
+                        backgroundColor: AppColors.secondaryColor,
                         foregroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8))),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:job_findder_app/models/category.dart';
 import 'package:job_findder_app/screens/admin/category/services/categoryServices.dart';
 import '../../../../common/custom_textFormField.dart';
-import '../../../../constants/global_variables.dart';
+import '../../../../constants/appColors.dart';
 
 class UpdateCategoryScreen extends StatefulWidget {
   static const routeName = '/update-category';
@@ -70,7 +70,7 @@ class _UpdateCategoryScreenState extends State<UpdateCategoryScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 6),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: GlobalVariables.primarycolor,
+                    backgroundColor: AppColors.primarycolor,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10))),
                 onPressed: update,

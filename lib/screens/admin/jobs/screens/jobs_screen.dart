@@ -8,7 +8,7 @@ import 'package:job_findder_app/screens/admin/jobs/screens/update_jobs.dart';
 import 'package:job_findder_app/screens/admin/jobs/services/jobServices.dart';
 import 'package:job_findder_app/screens/admin/jobs/widgets/jobWidget.dart';
 
-import '../../../../constants/global_variables.dart';
+import '../../../../constants/appColors.dart';
 import '../../../../models/jobs.dart';
 
 class JobsScreen extends StatefulWidget {
@@ -82,7 +82,7 @@ class _JobsScreenState extends State<JobsScreen> {
               onPressed: navigateToAddJobScreen,
               icon: const Icon(
                 Icons.add_circle,
-                color: GlobalVariables.secondaryColor,
+                color: AppColors.secondaryColor,
               ))
         ],
       ),

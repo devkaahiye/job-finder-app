@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import '../widgets/custom_textField_2.dart';
 import '/screens/auth/screens/register.dart';
 import '/screens/client/home.dart';
-import '../../../constants/global_variables.dart';
+import '../../../constants/appColors.dart';
 import '../../../constants/utils.dart';
 import '../services/auth_services.dart';
 
@@ -60,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
     var screenH = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: GlobalVariables.backgroundColor,
+      backgroundColor: AppColors.backgroundColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 50),
@@ -79,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           'Shaqadoon',
                           maxLines: 1,
                           style: TextStyle(
-                              color: GlobalVariables.secondaryColor,
+                              color: AppColors.secondaryColor,
                               fontSize: 40,
                               fontWeight: FontWeight.w600),
                         ),
@@ -101,7 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         TextFormField(
                           style: const TextStyle(
-                              color: GlobalVariables.primarycolor),
+                              color: AppColors.primarycolor),
                           controller: passcontroller,
                           obscureText: !_passwordVisible,
                           validator: (value) {
@@ -123,21 +123,21 @@ class _LoginScreenState extends State<LoginScreen> {
                             focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15),
                                 borderSide: const BorderSide(
-                                    color: GlobalVariables.secondaryColor)),
+                                    color: AppColors.secondaryColor)),
                             filled: true,
                             hintText: 'Password',
                             hintStyle: const TextStyle(color: Colors.grey),
                             fillColor: Colors.white,
                             prefixIcon: const Icon(
                               Icons.password,
-                              color: GlobalVariables.secondaryColor,
+                              color: AppColors.secondaryColor,
                             ),
                             suffixIcon: IconButton(
                               icon: Icon(
                                 _passwordVisible
                                     ? Icons.visibility
                                     : Icons.visibility_off,
-                                color: GlobalVariables.primarycolor,
+                                color: AppColors.primarycolor,
                               ),
                               onPressed: () {
                                 setState(() {
@@ -155,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             : ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor:
-                                        GlobalVariables.secondaryColor,
+                                        AppColors.secondaryColor,
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(8))),
@@ -176,7 +176,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           children: [
                             CircleAvatar(
                               backgroundColor: Colors.white,
-                              foregroundColor: GlobalVariables.secondaryColor,
+                              foregroundColor: AppColors.secondaryColor,
                               child: Image.asset(
                                 'assets/google.png',
                                 width: 20,
@@ -185,7 +185,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             const SizedBox(width: 10),
                             const CircleAvatar(
                               backgroundColor: Colors.white,
-                              foregroundColor: GlobalVariables.secondaryColor,
+                              foregroundColor: AppColors.secondaryColor,
                               child: Icon(
                                 Icons.facebook_sharp,
                                 size: 30,
@@ -211,7 +211,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     TextButton(
                       child: const Text('SingUp',
                           style: TextStyle(
-                              color: GlobalVariables.secondaryColor,
+                              color: AppColors.secondaryColor,
                               fontSize: 16)),
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(

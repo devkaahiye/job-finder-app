@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:job_findder_app/screens/admin/users/services/adminUserServices.dart';
 
 import '../../../../common/custom_textField.dart';
-import '../../../../constants/global_variables.dart';
+import '../../../../constants/appColors.dart';
 import '../../../../models/userModel.dart';
 
 class UserListScreen extends StatefulWidget {
@@ -73,7 +73,7 @@ class _UserreenListScreenState extends State<UserListScreen> {
                           margin: const EdgeInsets.only(bottom: 10),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: GlobalVariables.greyBackgroundCOlor,
+                            color: AppColors.greyBackgroundCOlor,
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),

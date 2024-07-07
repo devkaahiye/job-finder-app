@@ -4,7 +4,7 @@ import 'package:job_findder_app/screens/admin/category/screens/update_category.d
 import 'package:job_findder_app/screens/admin/subcategory/screens/add_subcategory.dart';
 import 'package:job_findder_app/screens/admin/subcategory/services/subcategoryServices.dart';
 
-import '../../../../constants/global_variables.dart';
+import '../../../../constants/appColors.dart';
 import '../../../../constants/utils.dart';
 import '../../../../models/subCategories.dart';
 import 'update_subcategory.dart';
@@ -78,7 +78,7 @@ class _SubcategoriesScreenState extends State<SubcategoriesScreen> {
               onPressed: _navigateToAddSubCategory,
               icon: const Icon(
                 Icons.add_circle,
-                color: GlobalVariables.secondaryColor,
+                color: AppColors.secondaryColor,
               ))
         ],
       ),

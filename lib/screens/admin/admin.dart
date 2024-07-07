@@ -3,7 +3,7 @@ import '/screens/admin/jobs/services/jobServices.dart';
 import '/screens/admin/services/admin_services.dart';
 import '/screens/admin/widgets/customContainer.dart';
 
-import '../../constants/global_variables.dart';
+import '../../constants/appColors.dart';
 import '../../models/jobs.dart';
 import 'jobs/screens/update_jobs.dart';
 import 'jobs/widgets/jobWidget.dart';
@@ -126,7 +126,7 @@ class _AdminScreenState extends State<AdminScreen> {
                             ),
                             Text('see all',
                                 style: TextStyle(
-                                  color: GlobalVariables.secondaryColor,
+                                  color: AppColors.secondaryColor,
                                 ))
                           ]),
                       SizedBox(
@@ -184,7 +184,7 @@ class _AdminScreenState extends State<AdminScreen> {
           child: CustomContainer(
             title: 'Total Jobs',
             value: totalJobs,
-            color: GlobalVariables.pistachio,
+            color: AppColors.pistachio,
           ),
         ),
         SizedBox(
@@ -194,7 +194,7 @@ class _AdminScreenState extends State<AdminScreen> {
             child: CustomContainer(
               title: 'Job Seekers',
               value: totalJoobSeekers,
-              color: GlobalVariables.paradisePink,
+              color: AppColors.paradisePink,
             )),
       ],
     );
@@ -213,7 +213,7 @@ class _AdminScreenState extends State<AdminScreen> {
             child: CustomContainer(
               title: 'Total Categories',
               value: totalCategries,
-              color: GlobalVariables.crayola,
+              color: AppColors.crayola,
             )),
         SizedBox(
             height: size.height * 0.15,
@@ -221,7 +221,7 @@ class _AdminScreenState extends State<AdminScreen> {
             child: CustomContainer(
               title: 'Total SubCategories',
               value: totalSubCategries,
-              color: GlobalVariables.unitedNationsBlue,
+              color: AppColors.unitedNationsBlue,
             )),
       ],
     );

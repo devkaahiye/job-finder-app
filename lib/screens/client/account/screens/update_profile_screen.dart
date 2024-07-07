@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import '/common/custom_textFormField.dart';
 import '/models/userModel.dart';
 
-import '../../../../constants/global_variables.dart';
+import '../../../../constants/appColors.dart';
 
 class UpdateProfileScreen extends StatefulWidget {
   final User user;
@@ -135,7 +135,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 6),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: GlobalVariables.secondaryColor,
+                    backgroundColor: AppColors.secondaryColor,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10))),
                 onPressed: update,

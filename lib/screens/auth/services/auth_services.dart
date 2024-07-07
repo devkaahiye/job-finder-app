@@ -8,7 +8,7 @@ import '/provider/userProvider.dart';
 import '/screens/auth/screens/login.dart';
 
 import '/constants/error_handling.dart';
-import '/constants/global_variables.dart';
+import '../../../constants/appColors.dart';
 import '/constants/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -292,13 +292,15 @@ class AuthService {
                 userProvider.setUser(tokenRes.body);
                 if (!userProvider.user.isAdmin) {
                   if (userProvider.user.categories!.isEmpty) {
-                    Navigator.of(context)
-                        .pushNamed(RecomendedJobsScreen.routeName);
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        RecomendedJobsScreen.routeName, (route) => false);
                   } else {
-                    Navigator.of(context).pushNamed(Home.routeName);
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        Home.routeName, (route) => false);
                   }
                 } else {
-                  Navigator.of(context).pushNamed(AdminScreen.routeName);
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                      AdminScreen.routeName, (route) => false);
                 }
               });
         }

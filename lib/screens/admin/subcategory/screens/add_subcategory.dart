@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:job_findder_app/constants/utils.dart';
 import 'package:job_findder_app/screens/admin/subcategory/services/subcategoryServices.dart';
 import '../../../../common/custom_textFormField.dart';
-import '../../../../constants/global_variables.dart';
+import '../../../../constants/appColors.dart';
 import '../../../../models/category.dart';
 import '../../category/services/categoryServices.dart';
 
@@ -149,7 +149,7 @@ class _AddSubCategoryScreenState extends State<AddSubCategoryScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 6),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: GlobalVariables.primarycolor,
+                    backgroundColor: AppColors.primarycolor,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10))),
                 onPressed: categriesList.isEmpty

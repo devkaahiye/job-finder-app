@@ -6,7 +6,7 @@ import 'package:job_findder_app/screens/admin/jobs/services/jobServices.dart';
 import '/screens/admin/jobs/widgets/customDropDown.dart';
 
 import '../../../../common/custom_textFormField.dart';
-import '../../../../constants/global_variables.dart';
+import '../../../../constants/appColors.dart';
 import '../../../../models/category.dart';
 import '../../../../models/subCategories.dart';
 import '../../category/services/categoryServices.dart';
@@ -266,7 +266,7 @@ class _AddJobsScreenState extends State<AddJobsScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 6),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: GlobalVariables.secondaryColor,
+                    backgroundColor: AppColors.secondaryColor,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10))),
                 onPressed: save,

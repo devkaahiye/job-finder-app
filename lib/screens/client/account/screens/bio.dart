@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../common/custom_textFormField.dart';
-import '../../../../constants/global_variables.dart';
+import '../../../../constants/appColors.dart';
 import '../services/account_services.dart';
 
 class BioScreen extends StatefulWidget {
@@ -70,7 +70,7 @@ class _BioScreenState extends State<BioScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 6),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: GlobalVariables.secondaryColor,
+                    backgroundColor: AppColors.secondaryColor,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10))),
                 onPressed: save,

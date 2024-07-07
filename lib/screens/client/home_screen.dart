@@ -1,12 +1,11 @@
 import 'package:card_loading/card_loading.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
-import 'package:job_findder_app/models/jobs.dart';
-import 'package:job_findder_app/screens/client/details/screens/job_details.dart';
-import 'package:job_findder_app/screens/client/services/client_services.dart';
+import '/models/jobs.dart';
+import '/screens/client/details/screens/job_details.dart';
+import '/screens/client/services/client_services.dart';
 
-import '../../constants/global_variables.dart';
+import '../../constants/appColors.dart';
 import '../admin/jobs/services/jobServices.dart';
 import 'widgets/search_box.dart';
 
@@ -55,37 +54,19 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.grey.shade200,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(size.height * 0.15),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: Column(
-            children: [
-              SizedBox(
-                height: size.height * 0.03,
-              ),
-              ListTile(
-                contentPadding: EdgeInsets.zero,
-                title: const Text(
-                  'Discover your \ndream job',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 30,
-                      color: GlobalVariables.primarycolor),
-                ),
-                trailing: CircleAvatar(
-                  child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.person_2_outlined)),
-                ),
-              ),
-              SizedBox(
-                height: size.height * 0.01,
-              ),
-            ],
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: const Icon(Icons.grid_view_outlined),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CircleAvatar(
+              child: IconButton(
+                  onPressed: () {}, icon: const Icon(Icons.person_2_outlined)),
+            ),
           ),
-        ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -94,15 +75,41 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
+              SizedBox(
+                height: size.height * 0.01,
+              ),
               const SearchBox(),
               SizedBox(
                 height: size.height * 0.03,
               ),
-              const Text('Popular Jobs',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 22,
-                      color: GlobalVariables.primarycolor)),
+              const Text(
+                'For you',
+                style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 22,
+                    color: AppColors.primarycolor),
+              ),
+              SizedBox(
+                height: size.height * 0.02,
+              ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(
+                  "assets/job_banner.png",
+                  fit: BoxFit.fitHeight,
+                  height: 200,
+                ),
+              ),
+              SizedBox(
+                height: size.height * 0.02,
+              ),
+              const Text(
+                'Popular Jobs',
+                style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 22,
+                    color: AppColors.primarycolor),
+              ),
               SizedBox(
                 height: size.height * 0.03,
               ),
@@ -110,11 +117,13 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: size.height * 0.03,
               ),
-              const Text('Recomended for your',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 22,
-                      color: GlobalVariables.primarycolor)),
+              const Text(
+                'Recomended for your',
+                style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 22,
+                    color: AppColors.primarycolor),
+              ),
               SizedBox(
                 height: size.height * 0.03,
               ),
@@ -129,9 +138,9 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  SizedBox _buildPopukarJobs(Size size) {
+    _buildPopukarJobs(Size size) {
     return SizedBox(
-      height: size.height * 0.25,
+      height: size.height * 0.17,
       child: jobsList.isEmpty
           ? ListView.builder(
               itemCount: 4,
@@ -157,102 +166,67 @@ class _HomeScreenState extends State<HomeScreen> {
                       builder: (context) => JobDetailsScreen(job: job))),
                   child: Padding(
                     padding: const EdgeInsets.only(right: 10),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      width: size.width * 0.75,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(18),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          ListTile(
-                            contentPadding: EdgeInsets.zero,
-                            leading: Image.network(
-                              job.companyLogoUrl,
-                              width: 40,
+                    child: Card(
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        width: size.width * 0.75,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(15),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.2),
+                              spreadRadius: 2,
+                              blurRadius: 8,
+                              offset: const Offset(0, 3),
                             ),
-                            title: Text(
-                              job.title,
-                              style: const TextStyle(
-                                  color: GlobalVariables.primarycolor,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w700),
-                            ),
-                            subtitle: Text(job.company,
+                          ],
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            ListTile(
+                              contentPadding: EdgeInsets.zero,
+                              leading: Image.network(
+                                job.companyLogoUrl,
+                                width: 40,
+                              ),
+                              title: Text(
+                                job.title,
                                 style: const TextStyle(
-                                  color: Colors.black54,
-                                )),
-                            trailing: IconButton(
-                                onPressed: () => bookmarkJob(job.id.toString()),
-                                icon: const Icon(
-                                  Icons.bookmark_add,
-                                  color: Colors.black54,
-                                )),
-                          ),
-                          SizedBox(
-                            height: 35,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        shape: BoxShape.rectangle,
-                                        color: Colors.grey.shade200,
-                                        borderRadius: BorderRadius.circular(8)),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(job.city,
-                                          textAlign: TextAlign.center,
-                                          style: const TextStyle(
-                                              color: Colors.grey)),
+                                    color: AppColors.primarycolor,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w700),
+                              ),
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    job.company,
+                                    style: const TextStyle(
+                                      color: Colors.black54,
                                     ),
                                   ),
-                                ),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                Expanded(
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        shape: BoxShape.rectangle,
-                                        color: Colors.grey.shade200,
-                                        borderRadius: BorderRadius.circular(8)),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                          DateFormat.yMMMMd('en_US')
-                                              .format(job.postedDate!),
-                                          textAlign: TextAlign.center,
-                                          style: const TextStyle(
-                                              color: Colors.grey)),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                Expanded(
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        shape: BoxShape.rectangle,
-                                        color: Colors.grey.shade200,
-                                        borderRadius: BorderRadius.circular(8)),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(job.jobType,
-                                          textAlign: TextAlign.center,
-                                          style: const TextStyle(
-                                              color: Colors.grey)),
-                                    ),
-                                  ),
-                                )
-                              ],
+                                  const SizedBox(height: 8),
+                                  Text(
+                                    '\$${job.salary} - \$${job.salary}',
+                                    style: const TextStyle(
+                                        color: AppColors.secondaryColor,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500),
+                                  )
+                                ],
+                              ),
+                              trailing: IconButton(
+                                  onPressed: () =>
+                                      bookmarkJob(job.id.toString()),
+                                  icon: const Icon(
+                                    Icons.bookmark_add,
+                                    color: Colors.black54,
+                                  )),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -290,75 +264,90 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.only(bottom: 8),
                   child: Card(
                     surfaceTintColor: Colors.white,
-                    child: ListTile(
-                        contentPadding:
-                            const EdgeInsets.symmetric(horizontal: 6),
-                        leading: Container(
-                          decoration: BoxDecoration(
-                              color: Colors.grey.shade200,
-                              shape: BoxShape.rectangle,
-                              borderRadius: BorderRadius.circular(8)),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Image.network(
-                              job.companyLogoUrl,
-                              width: 25,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.2),
+                            spreadRadius: 2,
+                            blurRadius: 8,
+                            offset: const Offset(0, 3),
+                          ),
+                        ],
+                      ),
+                      child: ListTile(
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 6),
+                          leading: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.grey.shade200,
+                                shape: BoxShape.rectangle,
+                                borderRadius: BorderRadius.circular(8)),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Image.network(
+                                job.companyLogoUrl,
+                                width: 25,
+                              ),
                             ),
                           ),
-                        ),
-                        title: Text(job.title,
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 20,
-                                color: GlobalVariables.primarycolor)),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(job.company,
-                                style: const TextStyle(color: Colors.black54)),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                      shape: BoxShape.rectangle,
-                                      color: Colors.grey.shade200,
-                                      borderRadius: BorderRadius.circular(8)),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(job.city,
-                                        style: const TextStyle(
-                                            color: Colors.grey)),
+                          title: Text(job.title,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 20,
+                                  color: AppColors.primarycolor)),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(job.company,
+                                  style:
+                                      const TextStyle(color: Colors.black54)),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.rectangle,
+                                        color: Colors.grey.shade200,
+                                        borderRadius: BorderRadius.circular(8)),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(job.city,
+                                          style: const TextStyle(
+                                              color: Colors.grey)),
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(
-                                  width: 8,
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                      shape: BoxShape.rectangle,
-                                      color: Colors.grey.shade200,
-                                      borderRadius: BorderRadius.circular(8)),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(job.jobType,
-                                        style: const TextStyle(
-                                            color: Colors.grey)),
+                                  const SizedBox(
+                                    width: 8,
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        trailing: IconButton(
-                          onPressed: () => bookmarkJob(job.id.toString()),
-                          icon: const Icon(
-                            Icons.bookmark_add,
-                            color: Colors.black54,
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.rectangle,
+                                        color: Colors.grey.shade200,
+                                        borderRadius: BorderRadius.circular(8)),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(job.jobType,
+                                          style: const TextStyle(
+                                              color: Colors.grey)),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
-                        )),
+                          trailing: IconButton(
+                            onPressed: () => bookmarkJob(job.id.toString()),
+                            icon: const Icon(
+                              Icons.bookmark_add,
+                              color: Colors.black54,
+                            ),
+                          )),
+                    ),
                   ),
                 );
               },

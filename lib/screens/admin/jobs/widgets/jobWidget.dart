@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:job_findder_app/models/jobs.dart';
 
 import '../../../../common/custom_Alertdailog.dart';
-import '../../../../constants/global_variables.dart';
+import '../../../../constants/appColors.dart';
 
 class JobWidget extends StatelessWidget {
   final Job job;
@@ -19,7 +19,7 @@ class JobWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: GlobalVariables.greyBackgroundCOlor),
+          color: AppColors.greyBackgroundCOlor),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(

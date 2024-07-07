@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constants/global_variables.dart';
+import '../constants/appColors.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String routeName = '/splash';
@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CircularProgressIndicator(
-              color: GlobalVariables.primarycolor,
+              color: AppColors.primarycolor,
             )
           ],
         ),

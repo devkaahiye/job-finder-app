@@ -4,7 +4,7 @@ import 'package:job_findder_app/screens/client/account/services/account_services
 import 'package:month_year_picker/month_year_picker.dart';
 
 import '../../../../common/custom_textFormField.dart';
-import '../../../../constants/global_variables.dart';
+import '../../../../constants/appColors.dart';
 
 class CertificateScreen extends StatefulWidget {
   static const String routeName = '/certificate';
@@ -124,7 +124,7 @@ class _CertificateScreenState extends State<CertificateScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 6),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: GlobalVariables.secondaryColor,
+                    backgroundColor: AppColors.secondaryColor,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10))),
                 onPressed: save,

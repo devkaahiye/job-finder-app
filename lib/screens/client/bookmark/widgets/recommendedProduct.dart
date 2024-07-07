@@ -3,7 +3,7 @@ import 'package:job_findder_app/models/jobs.dart';
 import 'package:job_findder_app/screens/client/services/client_services.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../constants/global_variables.dart';
+import '../../../../constants/appColors.dart';
 import '../../../../provider/userProvider.dart';
 
 class RecommendedJob extends StatefulWidget {
@@ -50,7 +50,7 @@ class _RecommendedJobState extends State<RecommendedJob> {
               style: const TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 20,
-                  color: GlobalVariables.primarycolor)),
+                  color: AppColors.primarycolor)),
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

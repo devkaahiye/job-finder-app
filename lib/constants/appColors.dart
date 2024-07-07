@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 String uri = 'https://job-finder-app-i1r5.onrender.com';
 
-class GlobalVariables {
+class AppColors {
   static const secondaryColor = Color(0xFF006EF5);
   static const backgroundColor = Color.fromARGB(255, 239, 243, 250);
   static const Color greyBackgroundCOlor = Color(0xffebecee);

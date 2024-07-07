@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:job_findder_app/constants/global_variables.dart';
+import 'package:job_findder_app/constants/appColors.dart';
 import 'package:job_findder_app/screens/client/account/screens/user.dart';
 import 'package:job_findder_app/screens/client/bookmark/screens/book.dart';
 import 'package:job_findder_app/screens/client/home_screen.dart';
@@ -39,11 +39,11 @@ class _HomeState extends State<Home> {
           currentIndex: currentIndex,
           onTap: updatePage,
           items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: ''),
+            BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: ''),
             BottomNavigationBarItem(
-                icon: Icon(Icons.bookmarks_rounded), label: ''),
+                icon: Icon(Icons.bookmarks_outlined), label: ''),
             BottomNavigationBarItem(
-                icon: Icon(Icons.person_2_sharp), label: ''),
+                icon: Icon(Icons.person_2_outlined), label: ''),
           ]),
     );
   }

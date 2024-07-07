@@ -3,7 +3,7 @@ import 'package:job_findder_app/models/jobs.dart';
 import 'package:job_findder_app/screens/client/bookmark/widgets/recommendedProduct.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../constants/global_variables.dart';
+import '../../../../constants/appColors.dart';
 import '../../../../provider/userProvider.dart';
 import '../../details/screens/job_details.dart';
 

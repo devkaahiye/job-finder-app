@@ -6,7 +6,7 @@ import 'package:job_findder_app/constants/error_handling.dart';
 import 'package:job_findder_app/models/jobs.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../constants/global_variables.dart';
+import '../../../../constants/appColors.dart';
 import '../../../../constants/utils.dart';
 import '../../../../provider/userProvider.dart';
 

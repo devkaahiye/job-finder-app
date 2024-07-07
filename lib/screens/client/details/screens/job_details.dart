@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:job_findder_app/constants/global_variables.dart';
+import 'package:job_findder_app/constants/appColors.dart';
 
 import '../../../../models/jobs.dart';
 
@@ -74,7 +74,7 @@ class _JobDetailsScreenState extends State<JobDetailsScreen> {
                                 Text(
                                   widget.job.title,
                                   style: const TextStyle(
-                                      color: GlobalVariables.primarycolor,
+                                      color: AppColors.primarycolor,
                                       fontSize: 20,
                                       fontWeight: FontWeight.w700),
                                 ),
@@ -101,7 +101,7 @@ class _JobDetailsScreenState extends State<JobDetailsScreen> {
                                 Text(
                                   widget.job.city,
                                   style: const TextStyle(
-                                      color: GlobalVariables.primarycolor,
+                                      color: AppColors.primarycolor,
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500),
                                 ),
@@ -187,12 +187,12 @@ class _JobDetailsScreenState extends State<JobDetailsScreen> {
                 children: [
                   const TabBar(
                     indicatorSize: TabBarIndicatorSize.label,
-                    indicatorColor: GlobalVariables.primarycolor,
+                    indicatorColor: AppColors.primarycolor,
                     unselectedLabelColor: Colors.grey,
                     labelStyle: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: GlobalVariables.primarycolor),
+                        color: AppColors.primarycolor),
                     tabs: [
                       Tab(text: 'Overview'),
                       Tab(text: 'Experience'),
@@ -340,7 +340,7 @@ class _JobDetailsScreenState extends State<JobDetailsScreen> {
             style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)),
-                backgroundColor: GlobalVariables.secondaryColor,
+                backgroundColor: AppColors.secondaryColor,
                 foregroundColor: Colors.white),
             onPressed: () {},
             child: const Padding(

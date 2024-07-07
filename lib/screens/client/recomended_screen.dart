@@ -5,7 +5,7 @@ import 'package:job_findder_app/provider/userProvider.dart';
 import 'package:job_findder_app/screens/client/services/client_services.dart';
 import 'package:provider/provider.dart';
 
-import '../../constants/global_variables.dart';
+import '../../constants/appColors.dart';
 import '../../models/category.dart';
 import '../admin/category/services/categoryServices.dart';
 
@@ -97,11 +97,11 @@ class _RecomendedJobsScreenState extends State<RecomendedJobsScreen> {
             children: [
               const SizedBox(height: 40),
               const Text(
-                'Discover your \ndream job',
+                'What type of job your\nLooking for',
                 style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 30,
-                    color: GlobalVariables.primarycolor),
+                    color: AppColors.primarycolor),
               ),
               const Padding(
                 padding: EdgeInsets.all(8.0),
@@ -110,7 +110,7 @@ class _RecomendedJobsScreenState extends State<RecomendedJobsScreen> {
                   style: TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 16,
-                      color: GlobalVariables.primarycolor),
+                      color: AppColors.primarycolor),
                 ),
               ),
               Flexible(
@@ -149,9 +149,9 @@ class _RecomendedJobsScreenState extends State<RecomendedJobsScreen> {
                                   border: Border.all(
                                       color: selectedCategriesList
                                               .contains(category.id)
-                                          ? GlobalVariables.paradisePink
+                                          ? AppColors.paradisePink
                                           : Colors.transparent),
-                                  color: GlobalVariables.backgroundColor,
+                                  color: AppColors.backgroundColor,
                                   shape: BoxShape.rectangle,
                                   borderRadius: BorderRadius.circular(10)),
                               child: Center(child: Text(category.name)),
@@ -174,7 +174,7 @@ class _RecomendedJobsScreenState extends State<RecomendedJobsScreen> {
                   style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
-                      backgroundColor: GlobalVariables.secondaryColor,
+                      backgroundColor: AppColors.secondaryColor,
                       foregroundColor: Colors.white),
                   onPressed: save,
                   child: const Padding(

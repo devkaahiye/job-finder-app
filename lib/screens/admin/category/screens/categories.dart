@@ -1,6 +1,6 @@
 import 'package:card_loading/card_loading.dart';
 import 'package:flutter/material.dart';
-import 'package:job_findder_app/constants/global_variables.dart';
+import 'package:job_findder_app/constants/appColors.dart';
 import 'package:job_findder_app/screens/admin/category/screens/add_category.dart';
 import 'package:job_findder_app/screens/admin/category/screens/update_category.dart';
 import 'package:job_findder_app/screens/admin/category/services/categoryServices.dart';
@@ -75,7 +75,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               onPressed: _navigateToAddCategory,
               icon: const Icon(
                 Icons.add_circle,
-                color: GlobalVariables.secondaryColor,
+                color: AppColors.secondaryColor,
               ))
         ],
       ),

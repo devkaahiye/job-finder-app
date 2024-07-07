@@ -4,7 +4,7 @@ import '/routes.dart';
 import '/screens/auth/services/auth_services.dart';
 import '/screens/splash_screen.dart';
 import 'package:provider/provider.dart';
-import 'constants/global_variables.dart';
+import 'constants/appColors.dart';
 import 'package:month_year_picker/month_year_picker.dart';
 
 void main() {
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme:
-            ColorScheme.fromSeed(seedColor: GlobalVariables.secondaryColor),
+            ColorScheme.fromSeed(seedColor: AppColors.secondaryColor),
         useMaterial3: true,
         appBarTheme: AppBarTheme(
           backgroundColor: Colors.grey.shade200,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:month_year_picker/month_year_picker.dart';
 import '../../../../common/custom_textFormField.dart';
-import '../../../../constants/global_variables.dart';
+import '../../../../constants/appColors.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
 import '../services/account_services.dart';
@@ -227,7 +227,7 @@ class _EducationScreenState extends State<EducationScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 6),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: GlobalVariables.secondaryColor,
+                    backgroundColor: AppColors.secondaryColor,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10))),
                 onPressed: save,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../constants/global_variables.dart';
+import '../../../constants/appColors.dart';
 
 class CustomTextField2 extends StatelessWidget {
   final TextEditingController controller;
@@ -14,7 +14,7 @@ class CustomTextField2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style: const TextStyle(color: GlobalVariables.primarycolor),
+      style: const TextStyle(color: AppColors.primarycolor),
       controller: controller,
       validator: (value) {
         if (value!.isEmpty) {
@@ -33,14 +33,14 @@ class CustomTextField2 extends StatelessWidget {
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(6),
             borderSide:
-                const BorderSide(color: GlobalVariables.secondaryColor)),
+                const BorderSide(color: AppColors.secondaryColor)),
         filled: true,
         hintText: hintText,
         hintStyle: TextStyle(color: Colors.grey.shade500),
         fillColor: Colors.white,
         prefixIcon: Icon(
           icon,
-          color: GlobalVariables.secondaryColor,
+          color: AppColors.secondaryColor,
         ),
       ),
     );

@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:job_findder_app/screens/auth/screens/login.dart';
 import 'package:job_findder_app/screens/auth/widgets/custom_textField_2.dart';
-import '../../../constants/global_variables.dart';
+import '../../../constants/appColors.dart';
 import '../../../constants/utils.dart';
 import 'package:country_picker/country_picker.dart';
 
@@ -106,7 +106,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     var screenH = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: GlobalVariables.backgroundColor,
+      backgroundColor: AppColors.backgroundColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 35),
@@ -123,7 +123,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           'Welcome Back',
                           maxLines: 1,
                           style: TextStyle(
-                              color: GlobalVariables.secondaryColor,
+                              color: AppColors.secondaryColor,
                               fontSize: 40,
                               fontWeight: FontWeight.w600),
                         ),
@@ -173,7 +173,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         TextFormField(
                           style: const TextStyle(
-                              color: GlobalVariables.primarycolor),
+                              color: AppColors.primarycolor),
                           controller: passcontroller,
                           obscureText: !_passwordVisible,
                           validator: (value) {
@@ -195,21 +195,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(6),
                                 borderSide: const BorderSide(
-                                    color: GlobalVariables.secondaryColor)),
+                                    color: AppColors.secondaryColor)),
                             filled: true,
                             hintText: 'Password',
                             hintStyle: TextStyle(color: Colors.grey.shade500),
                             fillColor: Colors.white,
                             prefixIcon: const Icon(
                               Icons.password,
-                              color: GlobalVariables.secondaryColor,
+                              color: AppColors.secondaryColor,
                             ),
                             suffixIcon: IconButton(
                               icon: Icon(
                                 _passwordVisible
                                     ? Icons.visibility
                                     : Icons.visibility_off,
-                                color: GlobalVariables.secondaryColor,
+                                color: AppColors.secondaryColor,
                               ),
                               onPressed: () {
                                 setState(() {
@@ -227,7 +227,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             : ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor:
-                                        GlobalVariables.secondaryColor,
+                                        AppColors.secondaryColor,
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(8))),
@@ -257,7 +257,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               },
                               child: const Text('SingIn here',
                                   style: TextStyle(
-                                      color: GlobalVariables.secondaryColor,
+                                      color: AppColors.secondaryColor,
                                       fontSize: 16)),
                             ),
                           ],
@@ -284,7 +284,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           Expanded(
                             child: TextFormField(
                               style: const TextStyle(
-                                  color: GlobalVariables.primarycolor),
+                                  color: AppColors.primarycolor),
                               controller: citycontroller,
                               keyboardType: TextInputType.streetAddress,
                               validator: (value) {
@@ -306,7 +306,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(6),
                                       borderSide: const BorderSide(
-                                          color: GlobalVariables
+                                          color: AppColors
                                               .secondaryColor)),
                                   filled: true,
                                   fillColor: Colors.white,
@@ -315,7 +315,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       TextStyle(color: Colors.grey.shade500),
                                   prefixIcon: const Icon(
                                     Icons.location_city,
-                                    color: GlobalVariables.secondaryColor,
+                                    color: AppColors.secondaryColor,
                                   )),
                             ),
                           ),

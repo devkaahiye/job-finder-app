@@ -5,7 +5,7 @@ import 'package:job_findder_app/models/subCategories.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 import '../../../../constants/error_handling.dart';
-import '../../../../constants/global_variables.dart';
+import '../../../../constants/appColors.dart';
 import '../../../../constants/utils.dart';
 import '../../../../provider/userProvider.dart';
 

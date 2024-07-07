@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '/screens/client/account/services/account_services.dart';
 
 import '../../../../common/custom_textFormField.dart';
-import '../../../../constants/global_variables.dart';
+import '../../../../constants/appColors.dart';
 
 class SkillsScreen extends StatefulWidget {
   static const String routeName = '/skills';
@@ -125,7 +125,7 @@ class _SkillsScreenState extends State<SkillsScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 6),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: GlobalVariables.secondaryColor,
+                    backgroundColor: AppColors.secondaryColor,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10))),
                 onPressed: save,

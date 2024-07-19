@@ -28,9 +28,9 @@ class _BookMarkState extends State<BookMark> {
             automaticallyImplyLeading: false,
             title: const Text('Bookmarks'),
           ),
-          backgroundColor: Colors.grey.shade200,
-          body: jobsList == [] ? Center(child: Text('No'),) :ListView.builder(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+         
+          body: jobsList == [] ? const Center(child: Text('No'),) :ListView.builder(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             itemCount: jobsList!.length,
             itemBuilder: (BuildContext context, int index) {
               var job = jobsList[index];

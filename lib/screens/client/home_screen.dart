@@ -54,9 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
         leading: const Icon(Icons.grid_view_outlined),
         actions: [
           Padding(
@@ -138,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-    _buildPopukarJobs(Size size) {
+  _buildPopukarJobs(Size size) {
     return SizedBox(
       height: size.height * 0.17,
       child: jobsList.isEmpty

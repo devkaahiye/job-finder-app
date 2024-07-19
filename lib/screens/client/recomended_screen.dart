@@ -88,7 +88,6 @@ class _RecomendedJobsScreenState extends State<RecomendedJobsScreen> {
       }
     }
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),

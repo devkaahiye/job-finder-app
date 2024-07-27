@@ -48,6 +48,7 @@ dependencies:
   dropdown_button2: ^2.3.9
   country_state_city_picker: ^1.2.8
   csc_picker: ^0.2.7
+  pinput: ^3.0.1
 
 
 flutter_launcher_icons:

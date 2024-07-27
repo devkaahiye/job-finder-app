@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 void showSnackBar(BuildContext context, String text) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
-      duration: const Duration(seconds: 3),
+      behavior: SnackBarBehavior.floating,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20))),
+      duration: const Duration(seconds: 5),
       content: Text(text),
-      margin: const EdgeInsets.all(16.0),
     ),
   );
 }

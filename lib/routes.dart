@@ -28,6 +28,7 @@ import '/screens/client/account/widgets/workExperienceWidget.dart';
 import '/screens/client/home.dart';
 import '/screens/splash_screen.dart';
 import 'screens/admin/users/screens/adminUsersList.dart';
+import 'screens/auth/screens/otp_screen.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
   switch (routeSettings.name) {
@@ -87,6 +88,8 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       return MaterialPageRoute(builder: (_) => const LoginScreen());
     case RegisterScreen.routeName:
       return MaterialPageRoute(builder: (_) => const RegisterScreen());
+    case OtpScreen.routeName:
+      return MaterialPageRoute(builder: (_) => OtpScreen());
     default:
       return MaterialPageRoute(builder: (_) => const LoginScreen());
   }

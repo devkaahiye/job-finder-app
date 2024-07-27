@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-String uri = 'https://job-finder-app-i1r5.onrender.com';
+String uri = 'https://job-finder-app-server.onrender.com';
 
 class AppColors {
   static const secondaryColor = Color(0xFF006EF5);

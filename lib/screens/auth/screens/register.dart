@@ -7,6 +7,7 @@ import '../../../constants/utils.dart';
 import 'package:country_picker/country_picker.dart';
 
 import '../services/auth_services.dart';
+import 'otp_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   static const String routeName = '/singup';
@@ -78,7 +79,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
             city: citycontroller.text,
             country: selectedCountry.displayNameNoCountryCode,
             sex: sex,
-            onSucc: (() {
+            onSuccess: () {
+              authService.sendOtp(
+                  context: context,
+                  onSuccess: () {
+                    showSnackBar(context, 'OTP sent successfully');
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        OtpScreen.routeName,
+                        arguments: emailcontroller.text,
+                        (route) => false);
+                  },
+                  onError: () {
+                    showSnackBar(context, 'OTP not sent, please try again');
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        OtpScreen.routeName,
+                        arguments: emailcontroller.text,
+                        (route) => false);
+                  },
+                  email: emailcontroller.text);
+            },
+            onError: (() {
               setState(() {
                 isLoging = false;
               });
@@ -151,15 +171,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     key: _signInFormKey,
                     child: Column(
                       children: [
-                        CustomTextField2(controller: namecontroller, hintText: 'Full name', icon: Icons.person_3,),
+                        CustomTextField2(
+                          controller: namecontroller,
+                          hintText: 'Full name',
+                          icon: Icons.person_3,
+                        ),
                         const SizedBox(
                           height: 12,
                         ),
-                        CustomTextField2(controller: emailcontroller, hintText: 'Email address', icon: Icons.email),
+                        CustomTextField2(
+                            controller: emailcontroller,
+                            hintText: 'Email address',
+                            icon: Icons.email),
                         const SizedBox(
                           height: 12,
                         ),
-                        CustomTextField2(controller: phonecontroller, hintText: 'Phone Number', icon: Icons.phone),
+                        CustomTextField2(
+                            controller: phonecontroller,
+                            hintText: 'Phone Number',
+                            icon: Icons.phone),
                         const SizedBox(
                           height: 12,
                         ),
@@ -172,8 +202,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           height: 12,
                         ),
                         TextFormField(
-                          style: const TextStyle(
-                              color: AppColors.primarycolor),
+                          style: const TextStyle(color: AppColors.primarycolor),
                           controller: passcontroller,
                           obscureText: !_passwordVisible,
                           validator: (value) {
@@ -226,8 +255,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ? const Center(child: CircularProgressIndicator())
                             : ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                    backgroundColor:
-                                        AppColors.secondaryColor,
+                                    backgroundColor: AppColors.secondaryColor,
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(8))),
@@ -251,9 +279,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     color: Colors.grey, fontSize: 16)),
                             TextButton(
                               onPressed: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: ((context) =>
-                                        const LoginScreen())));
+                                isLoging
+                                    ? () {}
+                                    : Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: ((context) =>
+                                                const LoginScreen())));
                               },
                               child: const Text('SingIn here',
                                   style: TextStyle(
@@ -279,137 +310,128 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   Row _buildCountryPicker(BuildContext context, double screenH) {
     return Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Expanded(
-                            child: TextFormField(
-                              style: const TextStyle(
-                                  color: AppColors.primarycolor),
-                              controller: citycontroller,
-                              keyboardType: TextInputType.streetAddress,
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return 'city is required!';
-                                }
-                                return null;
-                              },
-                              decoration: InputDecoration(
-                                  errorStyle: const TextStyle(fontSize: 0.01),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(6),
-                                      borderSide: const BorderSide(
-                                          color: Colors.white)),
-                                  enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(6),
-                                      borderSide: const BorderSide(
-                                          color: Colors.white)),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(6),
-                                      borderSide: const BorderSide(
-                                          color: AppColors
-                                              .secondaryColor)),
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  hintText: 'City',
-                                  hintStyle:
-                                      TextStyle(color: Colors.grey.shade500),
-                                  prefixIcon: const Icon(
-                                    Icons.location_city,
-                                    color: AppColors.secondaryColor,
-                                  )),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: Container(
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(6),
-                                  color: Colors.white),
-                              child: TextButton(
-                                style: TextButton.styleFrom(
-                                    alignment: Alignment.topLeft),
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 12),
-                                  child: Text(
-                                    '${selectedCountry.flagEmoji} ${selectedCountry.displayNameNoCountryCode}',
-                                    style: const TextStyle(
-                                        color: Colors.black, fontSize: 16),
-                                  ),
-                                ),
-                                onPressed: () {
-                                  showCountryPicker(
-                                      context: context,
-                                      countryListTheme: CountryListThemeData(
-                                        bottomSheetHeight: screenH * 0.6,
-                                      ),
-                                      onSelect: (value) {
-                                        setState(() {
-                                          selectedCountry = value;
-                                        });
-                                      });
-                                },
-                              ),
-                            ),
-                          ),
-                        ],
-                      );
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Expanded(
+          child: TextFormField(
+            style: const TextStyle(color: AppColors.primarycolor),
+            controller: citycontroller,
+            keyboardType: TextInputType.streetAddress,
+            validator: (value) {
+              if (value!.isEmpty) {
+                return 'city is required!';
+              }
+              return null;
+            },
+            decoration: InputDecoration(
+                errorStyle: const TextStyle(fontSize: 0.01),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(6),
+                    borderSide: const BorderSide(color: Colors.white)),
+                enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(6),
+                    borderSide: const BorderSide(color: Colors.white)),
+                focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(6),
+                    borderSide:
+                        const BorderSide(color: AppColors.secondaryColor)),
+                filled: true,
+                fillColor: Colors.white,
+                hintText: 'City',
+                hintStyle: TextStyle(color: Colors.grey.shade500),
+                prefixIcon: const Icon(
+                  Icons.location_city,
+                  color: AppColors.secondaryColor,
+                )),
+          ),
+        ),
+        const SizedBox(
+          width: 10,
+        ),
+        Expanded(
+          child: Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(6), color: Colors.white),
+            child: TextButton(
+              style: TextButton.styleFrom(alignment: Alignment.topLeft),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                child: Text(
+                  '${selectedCountry.flagEmoji} ${selectedCountry.displayNameNoCountryCode}',
+                  style: const TextStyle(color: Colors.black, fontSize: 16),
+                ),
+              ),
+              onPressed: () {
+                showCountryPicker(
+                    context: context,
+                    countryListTheme: CountryListThemeData(
+                      bottomSheetHeight: screenH * 0.6,
+                    ),
+                    onSelect: (value) {
+                      setState(() {
+                        selectedCountry = value;
+                      });
+                    });
+              },
+            ),
+          ),
+        ),
+      ],
+    );
   }
 
   Container _buildSexOptions() {
     return Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        width: double.infinity,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text('Sex:'),
-                            Row(
-                              children: [
-                                Row(
-                                  children: [
-                                    Checkbox(
-                                        value: isMale,
-                                        onChanged: (val) {
-                                          setState(() {
-                                            isFemaleMale = false;
-                                            isMale = val!;
-                                            if (val == true) {
-                                              sex = 'Male';
-                                            } else {
-                                              sex = '';
-                                            }
-                                          });
-                                        }),
-                                    const Text('Male')
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Checkbox(
-                                        value: isFemaleMale,
-                                        onChanged: (val) {
-                                          setState(() {
-                                            isMale = false;
-                                            isFemaleMale = val!;
-                                            if (val == true) {
-                                              sex = 'Female';
-                                            } else {
-                                              sex = '';
-                                            }
-                                          });
-                                        }),
-                                    const Text('Female')
-                                  ],
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                      );
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      width: double.infinity,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Text('Sex:'),
+          Row(
+            children: [
+              Row(
+                children: [
+                  Checkbox(
+                      value: isMale,
+                      onChanged: (val) {
+                        setState(() {
+                          isFemaleMale = false;
+                          isMale = val!;
+                          if (val == true) {
+                            sex = 'Male';
+                          } else {
+                            sex = '';
+                          }
+                        });
+                      }),
+                  const Text('Male')
+                ],
+              ),
+              Row(
+                children: [
+                  Checkbox(
+                      value: isFemaleMale,
+                      onChanged: (val) {
+                        setState(() {
+                          isMale = false;
+                          isFemaleMale = val!;
+                          if (val == true) {
+                            sex = 'Female';
+                          } else {
+                            sex = '';
+                          }
+                        });
+                      }),
+                  const Text('Female')
+                ],
+              ),
+            ],
+          )
+        ],
+      ),
+    );
   }
 }

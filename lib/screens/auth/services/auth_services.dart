@@ -1,6 +1,9 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 import 'package:job_findder_app/screens/admin/admin.dart';
+import 'package:job_findder_app/screens/auth/screens/otp_screen.dart';
 import 'package:job_findder_app/screens/client/recomended_screen.dart';
 
 import '../../client/home.dart';
@@ -16,6 +19,51 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
+  String generateOtp(int length) {
+    final random = Random();
+    final otp = List.generate(length, (index) => random.nextInt(10)).join();
+    return otp;
+  }
+
+  void sendOtp(
+      {required BuildContext context,
+      required VoidCallback onSuccess,
+      required VoidCallback onError,
+      required String email}) async {
+    try {
+      String otp = generateOtp(6);
+
+      http.Response res = await http.post(
+        Uri.parse('$uri/api/users/generate-otp/'),
+        body: jsonEncode({'email': email, 'otp': otp}),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+
+      if (res.statusCode != 200) {
+        onError();
+      }
+      if (context.mounted) {
+        httpErrorHandle(
+          response: res,
+          context: context,
+          onSuccess: () async {
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+
+            prefs.setString('otp', otp);
+            onSuccess();
+          },
+        );
+      }
+    } catch (e) {
+      onError();
+      if (context.mounted) {
+        showSnackBar(context, 'Error: $e');
+      }
+    }
+  }
+
   // sign up user
   void signUpUser(
       {required BuildContext context,
@@ -26,7 +74,8 @@ class AuthService {
       required String sex,
       required String city,
       required String country,
-      required VoidCallback onSucc}) async {
+      required VoidCallback onSuccess,
+      required VoidCallback onError}) async {
     try {
       var user = Provider.of<UserProvider>(context, listen: false).user;
       // print(user.token);
@@ -53,22 +102,22 @@ class AuthService {
       }
 
       if (res.statusCode != 201) {
-        onSucc();
+        onError();
       }
       if (context.mounted) {
         httpErrorHandle(
           response: res,
           context: context,
-          onSuccess: () {
-            showSnackBar(
-                context, 'Account created! Login with the same credentials!');
+          onSuccess: () async {
+            SharedPreferences prefs = await SharedPreferences.getInstance();
 
-            Navigator.of(context).pop();
+            prefs.setString('email', email);
+            onSuccess();
           },
         );
       }
     } catch (e) {
-      onSucc();
+      onError();
       if (context.mounted) {
         showSnackBar(context, 'Error: $e');
       }
@@ -105,12 +154,10 @@ class AuthService {
           context: context,
           onSuccess: () async {
             SharedPreferences prefs = await SharedPreferences.getInstance();
-            SharedPreferences prefsToken =
-                await SharedPreferences.getInstance();
 
+            await prefs.setString('otp', '');
             await prefs.setString('jobId', jsonDecode(res.body)['_id']);
-            await prefsToken.setString(
-                'jobToken', jsonDecode(res.body)['token']);
+            await prefs.setString('jobToken', jsonDecode(res.body)['token']);
 
             if (context.mounted) {
               Provider.of<UserProvider>(context, listen: false)
@@ -265,50 +312,61 @@ class AuthService {
     try {
       var userProvider = Provider.of<UserProvider>(context, listen: false);
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      SharedPreferences prefsToken = await SharedPreferences.getInstance();
+      String otp = prefs.getString('otp') ?? '';
       String? id = prefs.getString('jobId') ?? '';
-      String? token = prefsToken.getString('jobToken') ?? '';
+      String? token = prefs.getString('jobToken') ?? '';
 
-      if (token != '') {
-        var tokenRes = await http.post(
-          Uri.parse('$uri/api/users/profile/$id'),
-          headers: {
-            'Content-Type': 'application/json; charset=UTF-8',
-            'authorization': 'Bearer $token',
-          },
-          body: jsonEncode({
-            'token': token,
-          }),
-        );
+      print(otp);
 
-        // print(tokenRes.body);
-        // print(tokenRes.statusCode);
+      if (otp == '') {
+        if (token != '') {
+          var tokenRes = await http.post(
+            Uri.parse('$uri/api/users/profile/$id'),
+            headers: {
+              'Content-Type': 'application/json; charset=UTF-8',
+              'authorization': 'Bearer $token',
+            },
+            body: jsonEncode({
+              'token': token,
+            }),
+          );
 
-        if (context.mounted) {
-          httpErrorHandle(
-              response: tokenRes,
-              context: context,
-              onSuccess: () async {
-                userProvider.setUser(tokenRes.body);
-                if (!userProvider.user.isAdmin) {
-                  if (userProvider.user.categories!.isEmpty) {
-                    Navigator.of(context).pushNamedAndRemoveUntil(
-                        RecomendedJobsScreen.routeName, (route) => false);
+          // print(tokenRes.body);
+          // print(tokenRes.statusCode);
+
+          if (context.mounted) {
+            httpErrorHandle(
+                response: tokenRes,
+                context: context,
+                onSuccess: () async {
+                  userProvider.setUser(tokenRes.body);
+                  if (!userProvider.user.isAdmin) {
+                    if (userProvider.user.categories!.isEmpty) {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          RecomendedJobsScreen.routeName, (route) => false);
+                    } else {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          Home.routeName, (route) => false);
+                    }
                   } else {
                     Navigator.of(context).pushNamedAndRemoveUntil(
-                        Home.routeName, (route) => false);
+                        AdminScreen.routeName, (route) => false);
                   }
-                } else {
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                      AdminScreen.routeName, (route) => false);
-                }
-              });
+                });
+          }
+        } else {
+          if (context.mounted) {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: ((context) => const LoginScreen())),
+                (route) => false);
+          }
         }
       } else {
         if (context.mounted) {
           Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: ((context) => const LoginScreen())),
+              MaterialPageRoute(builder: ((context) => const OtpScreen())),
               (route) => false);
         }
       }

@@ -38,6 +38,8 @@ class AccountServices {
           response: res,
           context: context,
           onSuccess: () {
+            var user = Provider.of<UserProvider>(context, listen: false);
+            user.setUser(res.body);
             showSnackBar(context,
                 'Updated Successfully!, close the app an reopen again');
 
@@ -78,6 +80,8 @@ class AccountServices {
           response: res,
           context: context,
           onSuccess: () {
+            var user = Provider.of<UserProvider>(context, listen: false);
+            user.setUser(res.body);
             showSnackBar(context,
                 'Updated Successfully!, close the app an reopen again');
 
@@ -137,8 +141,8 @@ class AccountServices {
           response: res,
           context: context,
           onSuccess: () {
-            // var user = Provider.of<UserProvider>(context, listen: false);
-            // user.setUser(jsonDecode(res.body));
+            var user = Provider.of<UserProvider>(context, listen: false);
+            user.setUser(res.body);
             showSnackBar(context,
                 'Updated Successfully!, close the app an reopen again');
 
@@ -190,8 +194,8 @@ class AccountServices {
           response: res,
           context: context,
           onSuccess: () {
-            // var user = Provider.of<UserProvider>(context, listen: false);
-            // user.setUserFromModel(jsonDecode(res.body));
+            var user = Provider.of<UserProvider>(context, listen: false);
+            user.setUser(res.body);
             showSnackBar(context,
                 'Updated Successfully!, close the app an reopen again');
 
@@ -240,6 +244,8 @@ class AccountServices {
           response: res,
           context: context,
           onSuccess: () {
+            var user = Provider.of<UserProvider>(context, listen: false);
+            user.setUser(res.body);
             showSnackBar(context,
                 'Updated Successfully!, close the app an reopen again');
 
@@ -282,6 +288,8 @@ class AccountServices {
           response: res,
           context: context,
           onSuccess: () {
+            var user = Provider.of<UserProvider>(context, listen: false);
+            user.setUser(res.body);
             showSnackBar(context,
                 'Updated Successfully!, close the app an reopen again');
 
@@ -324,6 +332,8 @@ class AccountServices {
           response: res,
           context: context,
           onSuccess: () {
+            var user = Provider.of<UserProvider>(context, listen: false);
+            user.setUser(res.body);
             showSnackBar(context,
                 'Updated Successfully!, close the app an reopen again');
 

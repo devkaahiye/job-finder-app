@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:job_findder_app/screens/admin/applied_jobs/screens/admin_applied_jobs.dart';
 import '/screens/admin/category/screens/categories.dart';
 import '/screens/admin/jobs/screens/jobs_screen.dart';
 import '/screens/admin/subcategory/screens/subcategories.dart';
@@ -51,8 +52,8 @@ class NavigatorDDrawer extends StatelessWidget {
               'Categories',
               style: TextStyle(color: Colors.black87, fontSize: 18),
             ),
-            leading: const Icon(Icons.category,
-                color: AppColors.secondaryColor),
+            leading:
+                const Icon(Icons.category, color: AppColors.secondaryColor),
           ),
           ListTile(
             onTap: () =>
@@ -61,8 +62,8 @@ class NavigatorDDrawer extends StatelessWidget {
               'SubCategories',
               style: TextStyle(color: Colors.black87, fontSize: 18),
             ),
-            leading: const Icon(Icons.category,
-                color: AppColors.secondaryColor),
+            leading:
+                const Icon(Icons.category, color: AppColors.secondaryColor),
           ),
           ListTile(
             onTap: () => Navigator.pushNamed(context, JobsScreen.routeName),
@@ -70,8 +71,17 @@ class NavigatorDDrawer extends StatelessWidget {
               'Jobs',
               style: TextStyle(color: Colors.black87, fontSize: 18),
             ),
+            leading: const Icon(Icons.school, color: AppColors.secondaryColor),
+          ),
+          ListTile(
+            onTap: () =>
+                Navigator.pushNamed(context, AdminAppliedJobs.routeName),
+            title: const Text(
+              'Applied Jobs',
+              style: TextStyle(color: Colors.black87, fontSize: 18),
+            ),
             leading:
-                const Icon(Icons.school, color: AppColors.secondaryColor),
+                const Icon(Icons.work_history, color: AppColors.secondaryColor),
           ),
           ListTile(
             onTap: () => Navigator.pushNamed(context, UserListScreen.routeName),
@@ -89,8 +99,7 @@ class NavigatorDDrawer extends StatelessWidget {
               'Users',
               style: TextStyle(color: Colors.black87, fontSize: 18),
             ),
-            leading:
-                const Icon(Icons.group, color: AppColors.secondaryColor),
+            leading: const Icon(Icons.group, color: AppColors.secondaryColor),
           ),
           ListTile(
             onTap: () => showDialog(
@@ -110,8 +119,7 @@ class NavigatorDDrawer extends StatelessWidget {
               'LogOut',
               style: TextStyle(color: Colors.black87, fontSize: 18),
             ),
-            leading:
-                const Icon(Icons.logout, color: AppColors.secondaryColor),
+            leading: const Icon(Icons.logout, color: AppColors.secondaryColor),
           )
         ],
       ),

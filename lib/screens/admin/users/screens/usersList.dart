@@ -24,7 +24,7 @@ class _UserreenListScreenState extends State<UserListScreen> {
   void getAllUsers() async {
     usersList = await _adminUserServices.getAllUsers(context: context);
     isLoading = false;
-    if (context.mounted) {
+    if (mounted) {
       setState(() {});
     }
   }

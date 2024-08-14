@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:job_findder_app/screens/client/account/screens/add_bio.dart';
 import 'package:job_findder_app/screens/client/recomended_screen.dart';
 import '/screens/client/account/screens/bio.dart';
 import '/screens/client/account/screens/certificates.dart';
@@ -22,7 +23,7 @@ class UserScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    var user = Provider.of<UserProvider>(context, listen: false).user;
+    var user = context.watch<UserProvider>().user;
     return PopScope(
       canPop: false,
       child: Scaffold(
@@ -36,8 +37,9 @@ class UserScreen extends StatelessWidget {
                 child: ProfileWidget(
                     name: user.name,
                     email: user.email,
-                    onPressed: () => Navigator.of(context)
-                        .pushNamed(UpdateProfileScreen.routeName, arguments: user)),
+                    onPressed: () => Navigator.of(context).pushNamed(
+                        UpdateProfileScreen.routeName,
+                        arguments: user)),
               ),
               Expanded(
                   child: Container(
@@ -57,8 +59,8 @@ class UserScreen extends StatelessWidget {
                         iconColor: user.bio == "" ? Colors.red : Colors.blue,
                         iconData2:
                             user.bio == "" ? Icons.error_outline : Icons.edit,
-                        onTap: () =>
-                            Navigator.pushNamed(context, BioScreen.routeName)),
+                        onTap: () => Navigator.pushNamed(
+                            context, AddBioScreen.routeName)),
                     Divider(color: Colors.grey.shade200),
                     IconWidget(
                         text: 'Work Experience',

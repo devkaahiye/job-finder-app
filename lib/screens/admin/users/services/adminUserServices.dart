@@ -27,7 +27,7 @@ class AdminUserServices {
       );
 
       // print(res.statusCode);
-      // print(res.body);
+      print(res.body);
       if (context.mounted) {
         httpErrorHandle(
             response: res,
@@ -41,6 +41,7 @@ class AdminUserServices {
       }
     } catch (e) {
       if (context.mounted) {
+        print(e.toString());
         showSnackBar(context, 'Error: $e');
       }
     }

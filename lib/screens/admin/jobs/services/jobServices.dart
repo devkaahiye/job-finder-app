@@ -40,6 +40,7 @@ class JobServices {
       }
     } catch (e) {
       if (context.mounted) {
+       
         showSnackBar(context, 'Error: $e');
       }
     }

@@ -16,6 +16,7 @@ class _WorkExperienceWidgetState extends State<WorkExperienceWidget> {
   @override
   Widget build(BuildContext context) {
     var user = Provider.of<UserProvider>(context, listen: false).user;
+    print(user.workExperience);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Your Work Experience List'),
@@ -25,8 +26,8 @@ class _WorkExperienceWidgetState extends State<WorkExperienceWidget> {
         itemCount: user.workExperience!.length,
         itemBuilder: (BuildContext context, int index) {
           var wex = user.workExperience![index];
-          String stdate = wex['startDate'].substring(0, 10);
-          String enddate = wex['endDate'].substring(0, 10);
+          String stdate = wex.startDate.toString();
+          String enddate = wex.endDate.toString();
           var startTime = DateTime.parse(stdate);
           var endTime = DateTime.parse(enddate);
           // int.parse(wex['startDate'].replaceAll(RegExp(r'[^0-9]'), ''));
@@ -51,7 +52,7 @@ class _WorkExperienceWidgetState extends State<WorkExperienceWidget> {
                         Expanded(
                           flex: 8,
                           child: Text(
-                            "${wex['title']}",
+                            wex.title,
                             style: const TextStyle(fontSize: 18),
                           ),
                         )
@@ -70,7 +71,7 @@ class _WorkExperienceWidgetState extends State<WorkExperienceWidget> {
                         Expanded(
                           flex: 8,
                           child: Text(
-                            "${wex['category']}",
+                            wex.category,
                             style: const TextStyle(fontSize: 18),
                           ),
                         )
@@ -89,7 +90,7 @@ class _WorkExperienceWidgetState extends State<WorkExperienceWidget> {
                         Expanded(
                           flex: 8,
                           child: Text(
-                            "${wex['employmentType']}",
+                            wex.employmentType,
                             style: const TextStyle(fontSize: 18),
                           ),
                         )
@@ -108,7 +109,7 @@ class _WorkExperienceWidgetState extends State<WorkExperienceWidget> {
                         Expanded(
                           flex: 8,
                           child: Text(
-                            "${wex['companyName']}",
+                            wex.companyName,
                             style: const TextStyle(fontSize: 18),
                           ),
                         )
@@ -127,7 +128,7 @@ class _WorkExperienceWidgetState extends State<WorkExperienceWidget> {
                         Expanded(
                           flex: 8,
                           child: Text(
-                            "${wex['location']}",
+                            wex.location,
                             style: const TextStyle(fontSize: 18),
                           ),
                         )
@@ -146,7 +147,7 @@ class _WorkExperienceWidgetState extends State<WorkExperienceWidget> {
                         Expanded(
                           flex: 8,
                           child: Text(
-                            wex['currentlyWordk'] ? "YES" : "NO",
+                            wex.currentlyWorking ? "NO" : "YES",
                             style: const TextStyle(fontSize: 18),
                           ),
                         )

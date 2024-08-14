@@ -6,27 +6,29 @@ import 'package:provider/provider.dart';
 import '../../../../constants/appColors.dart';
 import '../../../../provider/userProvider.dart';
 import '../../details/screens/job_details.dart';
+import '../widgets/appliedJobsWidget.dart';
 
-class BookMark extends StatefulWidget {
-  const BookMark({super.key});
+class AppliedJobsScreen extends StatefulWidget {
+  const AppliedJobsScreen({super.key});
 
   @override
-  State<BookMark> createState() => _BookMarkState();
+  State<AppliedJobsScreen> createState() => _AppliedJobsScreenState();
 }
 
-class _BookMarkState extends State<BookMark> {
+class _AppliedJobsScreenState extends State<AppliedJobsScreen> {
   List<Job> jobsList = [];
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final jobsList = context.watch<UserProvider>().user.bookMarks;
+    final jobsList = context.watch<UserProvider>().user.appliedJobs;
+    print(jobsList);
     return PopScope(
       canPop: false,
       child: Scaffold(
           appBar: AppBar(
             elevation: 3,
             automaticallyImplyLeading: false,
-            title: const Text('Bookmarks'),
+            title: const Text('Applied Jobs'),
           ),
           body: jobsList == []
               ? const Center(
@@ -38,14 +40,10 @@ class _BookMarkState extends State<BookMark> {
                   itemCount: jobsList!.length,
                   itemBuilder: (BuildContext context, int index) {
                     var job = jobsList[index];
-                    return GestureDetector(
-                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) =>
-                              JobDetailsScreen(job: job.job))),
-                      child: Padding(
-                          padding: const EdgeInsets.only(bottom: 8),
-                          child: RecommendedJob(index: index)),
-                    );
+                    print("job $job");
+                    return Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: AppliedJobsWidget(index: index));
                   },
                 )),
     );

@@ -28,7 +28,7 @@ class _RecommendedJobState extends State<RecommendedJob> {
   Widget build(BuildContext context) {
     final jobsList =
         context.watch<UserProvider>().user.bookMarks![widget.index];
-    final job = Job.fromMap(jobsList['job']);
+    final job =jobsList.job;
     return Card(
       surfaceTintColor: Colors.white,
       child: ListTile(

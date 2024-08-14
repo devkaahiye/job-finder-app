@@ -4,6 +4,8 @@ import 'package:job_findder_app/screens/client/account/screens/user.dart';
 import 'package:job_findder_app/screens/client/bookmark/screens/book.dart';
 import 'package:job_findder_app/screens/client/home_screen.dart';
 
+import 'applied_jobs/screens/applied_jobs.dart';
+
 class Home extends StatefulWidget {
   static const String routeName = '/home';
 
@@ -19,6 +21,7 @@ class _HomeState extends State<Home> {
   List<Widget> pagesList = [
     const HomeScreen(),
     const BookMark(),
+    const AppliedJobsScreen(),
     const UserScreen()
   ];
 
@@ -39,11 +42,13 @@ class _HomeState extends State<Home> {
           currentIndex: currentIndex,
           onTap: updatePage,
           items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: ''),
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.bookmarks_outlined), label: ''),
+                icon: Icon(Icons.bookmarks), label: 'Wishlist'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.person_2_outlined), label: ''),
+                icon: Icon(Icons.work_history), label: 'Applied'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.person_2), label: 'Account'),
           ]),
     );
   }

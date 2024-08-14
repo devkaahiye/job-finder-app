@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:job_findder_app/models/category.dart';
-import 'package:job_findder_app/models/jobs.dart';
+import 'package:job_findder_app/models/jobs.dart' ;
 import 'package:job_findder_app/models/subCategories.dart';
-import 'package:job_findder_app/models/userModel.dart';
+import 'package:job_findder_app/models/userModel.dart' hide Category;
+import 'package:job_findder_app/screens/admin/applied_jobs/screens/admin_applied_jobs.dart';
 import 'package:job_findder_app/screens/client/account/screens/update_profile_screen.dart';
 import 'package:job_findder_app/screens/client/recomended_screen.dart';
 import '/screens/admin/admin.dart';
@@ -29,6 +30,12 @@ import '/screens/client/home.dart';
 import '/screens/splash_screen.dart';
 import 'screens/admin/users/screens/adminUsersList.dart';
 import 'screens/auth/screens/otp_screen.dart';
+import 'screens/client/account/screens/add_bio.dart';
+import 'screens/client/account/screens/add_certificates.dart';
+import 'screens/client/account/screens/add_education.dart';
+import 'screens/client/account/screens/add_language.dart';
+import 'screens/client/account/screens/add_skills.dart';
+import 'screens/client/account/screens/add_workExperience.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
   switch (routeSettings.name) {
@@ -49,6 +56,8 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
     case UpdateJobsScreen.routeName:
       final job = routeSettings.arguments as Job;
       return MaterialPageRoute(builder: (_) => UpdateJobsScreen(job: job));
+    case AdminAppliedJobs.routeName:
+      return MaterialPageRoute(builder: (_) => const AdminAppliedJobs());
     case CategoriesScreen.routeName:
       return MaterialPageRoute(builder: (_) => const CategoriesScreen());
     case AddCategoryScreen.routeName:
@@ -84,6 +93,20 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       return MaterialPageRoute(builder: (_) => const WorkExperienceScreen());
     case WorkExperienceWidget.routeName:
       return MaterialPageRoute(builder: (_) => const WorkExperienceWidget());
+    case AddBioScreen.routeName:
+      return MaterialPageRoute(builder: (_) => const AddBioScreen());
+    case AddCertificateScreen.routeName:
+      return MaterialPageRoute(builder: (_) => const AddCertificateScreen());
+    case AddEducationScreen.routeName:
+      return MaterialPageRoute(builder: (_) => const AddEducationScreen());
+    case AddEducationScreen.routeName:
+      return MaterialPageRoute(builder: (_) => const AddEducationScreen());
+    case AddSkillsScreen.routeName:
+      return MaterialPageRoute(builder: (_) => const AddSkillsScreen());
+    case AddWorkExperienceScreen.routeName:
+      return MaterialPageRoute(builder: (_) => const AddWorkExperienceScreen());
+    // case WorkExperienceWidget.routeName:
+    //   return MaterialPageRoute(builder: (_) => const WorkExperienceWidget());
     case LoginScreen.routeName:
       return MaterialPageRoute(builder: (_) => const LoginScreen());
     case RegisterScreen.routeName:

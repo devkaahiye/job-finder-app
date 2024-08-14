@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:job_findder_app/screens/client/account/screens/add_bio.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../common/custom_textFormField.dart';
 import '../../../../constants/appColors.dart';
+import '../../../../provider/userProvider.dart';
 import '../services/account_services.dart';
 
 class BioScreen extends StatefulWidget {
@@ -45,41 +48,25 @@ class _BioScreenState extends State<BioScreen> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    var user = context.watch<UserProvider>().user;
     return Scaffold(
       appBar: AppBar(
         title: const Text('BIO'),
       ),
-      body: Form(
-        key: _formkey,
-        child: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          children: [
-            SizedBox(
-              height: size.height * 0.04,
-            ),
-            CustomTextFormField(
-                maxLines: 5,
-                controller: bioController,
-                hintText: 'Brief information about yourself...'),
-          ],
-        ),
+      body: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        children: [
+          SizedBox(
+            height: size.height * 0.04,
+          ),
+          Text("${user.bio}")
+        ],
       ),
-      bottomNavigationBar: isSaving
-          ? const Center(child: CircularProgressIndicator())
-          : Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 6),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.secondaryColor,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10))),
-                onPressed: save,
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 18),
-                  child: Text('Save', style: TextStyle(color: Colors.white)),
-                ),
-              ),
-            ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () =>
+            Navigator.of(context).pushNamed(AddBioScreen.routeName),
+        child: Icon(Icons.edit),
+      ),
     );
   }
 }

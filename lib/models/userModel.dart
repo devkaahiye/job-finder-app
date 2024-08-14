@@ -1,7 +1,7 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 import 'category.dart';
-import 'jobs.dart';
 
 class User {
   final String id;
@@ -178,9 +178,40 @@ class User {
   }
 }
 
+class JobRef {
+  String? id;
+  String? title;
+  String? company;
+  String? jobType;
+  String? companyLogoUrl;
+  String? city;
+
+  JobRef({this.id, this.jobType, this.company, this.title});
+
+  JobRef.fromJson(Map<String, dynamic> json) {
+    id = json['_id'];
+    title = json['title'];
+    company = json['company'];
+    companyLogoUrl = json['companyLogoUrl'];
+    jobType = json['jobType'];
+    city = json['city'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['_id'] = this.id;
+    data['title'] = this.title;
+    data['company'] = this.company;
+    data['companyLogoUrl'] = this.companyLogoUrl;
+    data['jobType'] = this.jobType;
+    data['city'] = this.city;
+    return data;
+  }
+}
+
 // Example of nested model classes for applied jobs
 class AppliedJob {
-  final Job job;
+  final JobRef job;
   final String applicationStatus;
 
   AppliedJob({
@@ -190,33 +221,33 @@ class AppliedJob {
 
   factory AppliedJob.fromMap(Map<String, dynamic> map) {
     return AppliedJob(
-      job: Job.fromMap(map['job']),
+      job: JobRef.fromJson(map['job']),
       applicationStatus: map['applicationStatus'] ?? 'Applied',
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'job': job.toMap(),
+      'job': job,
       'applicationStatus': applicationStatus,
     };
   }
 }
 
 class BookMark {
-  final Job job;
+  final JobRef job;
 
   BookMark({required this.job});
 
   factory BookMark.fromMap(Map<String, dynamic> map) {
     return BookMark(
-      job: Job.fromMap(map['job']),
+      job: JobRef.fromJson(map['job']),
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'job': job.toMap(),
+      'job': job,
     };
   }
 }
@@ -399,6 +430,3 @@ class Skill {
     };
   }
 }
-
-// Similar model classes should be created for BookMark, Category, WorkExperience, Education, Certificate, Language, Skill, etc.
-

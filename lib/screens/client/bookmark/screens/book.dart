@@ -39,9 +39,7 @@ class _BookMarkState extends State<BookMark> {
                   itemBuilder: (BuildContext context, int index) {
                     var job = jobsList[index];
                     return GestureDetector(
-                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) =>
-                              JobDetailsScreen(job: job.job))),
+                      onTap: () {},
                       child: Padding(
                           padding: const EdgeInsets.only(bottom: 8),
                           child: RecommendedJob(index: index)),

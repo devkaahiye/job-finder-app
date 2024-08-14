@@ -29,6 +29,7 @@ class _AppliedJobsWidgetState extends State<AppliedJobsWidget> {
     final jobsList =
         context.watch<UserProvider>().user.appliedJobs![widget.index];
     final job = jobsList.job;
+    print("object");
 
     return Card(
       surfaceTintColor: Colors.white,
@@ -41,13 +42,15 @@ class _AppliedJobsWidgetState extends State<AppliedJobsWidget> {
               borderRadius: BorderRadius.circular(8)),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Image.network(
-              job.companyLogoUrl,
-              width: 25,
-            ),
+            child: job.companyLogoUrl != null
+                ? Image.network(
+                    job.companyLogoUrl!,
+                    width: 25,
+                  )
+                : Image.asset("assets/play_store_512.png"),
           ),
         ),
-        title: Text(job.title,
+        title: Text(job.title ?? '',
             style: const TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: 20,
@@ -71,7 +74,7 @@ class _AppliedJobsWidgetState extends State<AppliedJobsWidget> {
                       borderRadius: BorderRadius.circular(8)),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(job.city,
+                    child: Text(job.city ?? '',
                         style: const TextStyle(color: Colors.grey)),
                   ),
                 ),
@@ -85,7 +88,7 @@ class _AppliedJobsWidgetState extends State<AppliedJobsWidget> {
                       borderRadius: BorderRadius.circular(8)),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(job.jobType,
+                    child: Text(job.jobType ?? "",
                         style: const TextStyle(color: Colors.grey)),
                   ),
                 ),

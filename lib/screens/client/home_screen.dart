@@ -19,12 +19,15 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   List<Job> jobsList = [];
   List<Job> recoJobsList = [];
+  bool recoJobsListLoading = true;
+  bool jobsListLoading = true;
 
   final JobServices _jobServices = JobServices();
   final ClientServices _clientServices = ClientServices();
 
   void getAllJobs() async {
     jobsList = await _jobServices.getAllJobs(context: context);
+    jobsListLoading = false;
 
     if (mounted) {
       setState(() {});
@@ -33,6 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void getRecommendedJobs() async {
     recoJobsList = await _clientServices.getRecommendedJobs(context: context);
+    recoJobsListLoading = false;
 
     if (mounted) {
       setState(() {});
@@ -115,17 +119,21 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: size.height * 0.03,
               ),
-              const Text(
-                'Recomended for your',
-                style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 22,
-                    color: AppColors.primarycolor),
-              ),
-              SizedBox(
-                height: size.height * 0.03,
-              ),
-              _buildRecomendedJobs(size),
+              !recoJobsListLoading
+                  ? const Text(
+                      'Recomended for your',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 22,
+                          color: AppColors.primarycolor),
+                    )
+                  : Container(),
+              !recoJobsListLoading
+                  ? SizedBox(
+                      height: size.height * 0.03,
+                    )
+                  : Container(),
+              !recoJobsListLoading ? _buildRecomendedJobs(size) : Container(),
               SizedBox(
                 height: size.height * 0.03,
               )
@@ -138,7 +146,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   _buildPopukarJobs(Size size) {
     return SizedBox(
-      height: size.height * 0.17,
+      height: size.height * 0.22,
       child: jobsList.isEmpty
           ? ListView.builder(
               itemCount: 4,

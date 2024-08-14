@@ -29,8 +29,8 @@ class ClientServices {
         },
       );
 
-      // print(res.statusCode);
-      // print(res.body);
+      print(res.statusCode);
+      print(res.body);
       if (context.mounted) {
         httpErrorHandle(
             response: res,
@@ -63,7 +63,8 @@ class ClientServices {
             'Content-Type': 'application/json; charset=UTF-8',
             'authorization': 'Bearer ${userProvider.token}',
           },
-          body: jsonEncode({"categories": categories}));
+          body: jsonEncode(
+              {"categories": categories, "token": userProvider.token}));
 
       print(res.statusCode);
       print(res.body);
@@ -95,13 +96,13 @@ class ClientServices {
       required String id}) async {
     try {
       var userProvider = Provider.of<UserProvider>(context, listen: false);
-      http.Response res = await http.post(
-        Uri.parse('$uri/api/users/add-to-bookmark/$id'),
-        headers: {
-          'Content-Type': 'application/json; charset=UTF-8',
-          'authorization': 'Bearer ${userProvider.user.token}',
-        },
-      );
+      http.Response res =
+          await http.post(Uri.parse('$uri/api/users/add-to-bookmark/$id'),
+              headers: {
+                'Content-Type': 'application/json; charset=UTF-8',
+                'authorization': 'Bearer ${userProvider.user.token}',
+              },
+              body: jsonEncode({"token": userProvider.user.token}));
 
       // print(res.statusCode);
       // print(res.body);
@@ -111,9 +112,8 @@ class ClientServices {
             response: res,
             context: context,
             onSuccess: () {
-              User user = userProvider.user
-                  .copyWith(bookMarks: jsonDecode(res.body)['bookMarks']);
-              userProvider.setUserFromModel(user);
+              var user = Provider.of<UserProvider>(context, listen: false);
+              userProvider.setUser(res.body);
               showSnackBar(context, 'Successfully Added');
             });
       }
@@ -131,13 +131,13 @@ class ClientServices {
   void removeItem({required BuildContext context, required int index}) async {
     try {
       var userProvider = Provider.of<UserProvider>(context, listen: false);
-      http.Response res =
-          await http.post(Uri.parse('$uri/api/users/add/bookmark'),
-              headers: {
-                'Content-Type': 'application/json; charset=UTF-8',
-                'authorization': 'Bearer ${userProvider.user.token}',
-              },
-              body: jsonEncode({'index': index}));
+      http.Response res = await http.post(
+          Uri.parse('$uri/api/users/add/bookmark'),
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'authorization': 'Bearer ${userProvider.user.token}',
+          },
+          body: jsonEncode({'index': index, "token": userProvider.user.token}));
 
       print(res.statusCode);
       print(res.body);
@@ -147,9 +147,8 @@ class ClientServices {
             response: res,
             context: context,
             onSuccess: () {
-              User user = userProvider.user
-                  .copyWith(bookMarks: jsonDecode(res.body)['bookMarks']);
-              userProvider.setUserFromModel(user);
+              var user = Provider.of<UserProvider>(context, listen: false);
+              userProvider.setUser(res.body);
               showSnackBar(context, 'Successfully removed');
             });
       }

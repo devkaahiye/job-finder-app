@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:job_findder_app/constants/appColors.dart';
+import 'package:job_findder_app/models/userModel.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../models/jobs.dart';

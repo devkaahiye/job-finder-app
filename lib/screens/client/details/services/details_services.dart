@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -11,11 +10,12 @@ import 'package:provider/provider.dart';
 import '../../../../provider/userProvider.dart';
 
 class JobDetailsServices {
-  Future<void> createAppliedJob(
-      {required BuildContext context,
-      required String userId,
-      required String jobId,
-      required VoidCallback onError}) async {
+  Future<void> createAppliedJob({
+    required BuildContext context,
+    required String userId,
+    required String jobId,
+    required VoidCallback onError,
+  }) async {
     try {
       var user = Provider.of<UserProvider>(context, listen: false).user;
 
@@ -28,7 +28,7 @@ class JobDetailsServices {
         body: jsonEncode({
           'userId': userId,
           'jobId': jobId,
-          'applicationStatus': 'Applied',
+          'token': user.token,
         }),
       );
 
@@ -38,6 +38,7 @@ class JobDetailsServices {
       if (response.statusCode == 201) {
         if (context.mounted) {
           var user = Provider.of<UserProvider>(context, listen: false);
+          print(response.body);
           user.setUser(response.body);
           showSnackBar(context, "Applied successfully");
           onError();
@@ -49,6 +50,7 @@ class JobDetailsServices {
     } catch (e) {
       if (context.mounted) {
         onError();
+        print(e.toString());
         showSnackBar(context, 'Error: $e');
       }
     }

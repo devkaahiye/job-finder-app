@@ -20,6 +20,8 @@ class AccountServices {
         Uri.parse('$uri/api/users/app/bio/${user.id}'),
         body: jsonEncode({
           'bio': bio,
+          'token':user.token,
+          
         }),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
@@ -65,11 +67,13 @@ class AccountServices {
         Uri.parse('$uri/api/users/app/update/passwors/${user.id}'),
         body: jsonEncode({
           'categories': categories,
+          'token':user.token,
         }),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
           'authorization': 'Bearer ${user.token}',
         },
+        
       );
       if (res.statusCode != 200) {
         onError();
@@ -123,6 +127,7 @@ class AccountServices {
           "startDate": startDate,
           "endDate": endDate,
           "description": description,
+          'token':user.token,
         }),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
@@ -177,7 +182,8 @@ class AccountServices {
           "fieldOfStudy": fieldOfStudy,
           "startDate": startDate,
           "endDate": endDate,
-          "description": description
+          "description": description,
+          'token':user.token,
         }),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
@@ -229,6 +235,7 @@ class AccountServices {
           "issueDate": issueDate,
           "certificateUrl": certificateUrl,
           "description": description,
+          'token':user.token,
         }),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
@@ -273,6 +280,7 @@ class AccountServices {
         body: jsonEncode({
           "language": language,
           "level": level,
+          'token':user.token,
         }),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
@@ -317,6 +325,7 @@ class AccountServices {
         body: jsonEncode({
           "skill": skill,
           "level": level,
+          'token':user.token,
         }),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
